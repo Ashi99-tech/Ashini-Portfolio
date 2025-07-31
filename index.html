@@ -2,106 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ashini Sithmini | Portfolio</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa 0%, #fff3e0 100%);
+      color: #2c3e50;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     .container {
-      max-width: 1100px;
-      margin: auto;
+      max-width: 1000px;
+      margin: 0 auto;
       padding: 2rem;
     }
-    header {
-      text-align: center;
-      animation: fadeInDown 1.2s ease-in-out;
-    }
-    header h1 {
-      font-size: 3rem;
-      color: #3f51b5;
-      margin-bottom: 0.2rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #555;
-    }
-    .contact {
-      margin-top: 10px;
-      color: #666;
-    }
-    .contact a {
-      text-decoration: none;
-      color: #3f51b5;
-      font-weight: bold;
-    }
-    .section {
-      margin-top: 3rem;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      animation: fadeInUp 1.5s ease;
-    }
-    .section h2 {
-      color: #2b3a67;
-      border-bottom: 2px solid #3f51b5;
-      display: inline-block;
-      padding-bottom: 5px;
+    h1, h2 {
+      color: #2a2a72;
       margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-top: 1rem;
+      animation: fadeDown 1s ease forwards;
+    }
+    h2 {
+      border-left: 5px solid #3f51b5;
+      padding-left: 0.5rem;
+      margin-top: 3rem;
+      animation: fadeUp 1s ease forwards;
+    }
+    p, li {
+      font-size: 1rem;
     }
     ul {
       padding-left: 1.5rem;
     }
     li {
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.6rem;
     }
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header, section {
+      animation: fadeUp 1.5s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation-delay: 0.3s;
+    }
+
+    /* Contact styles */
+    .contact {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .contact a {
+      margin: 0 8px;
+    }
+
+    /* Project & section styles */
+    .project {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Gallery */
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
       gap: 15px;
-      justify-content: center;
+      margin-top: 1rem;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-delay: 1.2s;
     }
     .gallery img {
-      width: 230px;
+      width: 100%;
       height: 160px;
       object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-      border: 2px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
     .gallery img:hover {
       transform: scale(1.05);
-      border-color: #3f51b5;
+      box-shadow: 0 10px 25px rgba(63, 81, 181, 0.6);
     }
+
+    /* Footer */
     footer {
       text-align: center;
       margin-top: 3rem;
       padding: 1rem 0;
-      color: #888;
+      font-size: 0.9rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-delay: 1.5s;
     }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
+
+    /* Animations */
+    @keyframes fadeUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-40px);
-      }
+    @keyframes fadeDown {
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media(max-width:600px){
+      h1 {
+        font-size: 2rem;
+      }
+      .gallery img {
+        height: 130px;
       }
     }
   </style>
@@ -112,78 +156,87 @@
       <h1>Ashini Sithmini</h1>
       <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
       <div class="contact">
-        📧 ashinirupasinghe99@gmail.com | 📞 0766841994<br>
+        📧 <a href="mailto:ashinirupasinghe99@gmail.com">ashinirupasinghe99@gmail.com</a> | 📞 0766841994
+        <br />
         🔗 <a href="#">LinkedIn</a> | 🧠 <a href="#">GitHub</a>
       </div>
     </header>
 
-    <section class="section">
+    <section>
       <h2>About Me</h2>
-      <p>I am a passionate Mechatronics Engineering graduate from SLTC, with a GPA of 3.53. I specialize in robotics, computer vision, and AI with strong hands-on experience in both hardware and software. Ranked top 10% of the batch, I’m driven to develop impactful robotic systems that solve real-world problems.</p>
+      <p>I’m a passionate Mechatronics Engineering graduate from SLTC, ranked top 10% with a GPA of 3.53. I specialize in robotics, AI, computer vision, and autonomous systems, combining software and hardware expertise to build innovative solutions for real-world problems.</p>
     </section>
 
-    <section class="section">
+    <section>
       <h2>Key Projects</h2>
-      <ul>
-        <li><strong>Pol Detection System:</strong> YOLO-based object detection with OCR, integrated with conveyor belt for automated coconut quality assessment.</li>
-        <li><strong>Drowsiness Monitoring System:</strong> Detects eye blinks and head-down movement, with heart rate sensing for driver fatigue prevention.</li>
-        <li><strong>Telephone Kanu:</strong> IoT-based booth monitoring system for SLT. OCR used to detect serial numbers in Mobitel telephone units.</li>
-        <li><strong>Eggplant Harvesting Robot:</strong> 4WD mobile robot with vision-guided robotic arm for automated harvesting.</li>
-        <li><strong>CNC System:</strong> Mini low-cost CNC with G-code parser, designed and built from scratch.</li>
-      </ul>
+      <div class="project">
+        <strong>Automated Utility Pole Serial Number Detection</strong><br>
+        Leveraging Google Gemini Vision API to detect and read serial numbers printed on concrete utility poles, enabling infrastructure monitoring and asset management.
+      </div>
+      <div class="project">
+        <strong>Drowsiness Monitoring System</strong><br>
+        Real-time detection of eye blinks, head position, and heart rate to prevent driver fatigue and improve road safety.
+      </div>
+      <div class="project">
+        <strong>Smart Public Telecom Identification System</strong><br>
+        IoT & OCR-based system developed with Mobitel & SLT for automatic serial number recognition in public telephone booths.
+      </div>
+      <div class="project">
+        <strong>Automated Coconut Quality Inspection</strong><br>
+        Deep learning and computer vision integrated with conveyor belt systems to automate coconut grading and quality assessment.
+      </div>
+      <div class="project">
+        <strong>Autonomous Eggplant Harvesting Robot</strong><br>
+        4WD mobile robot with robotic arm and vision guidance for precision agriculture and harvesting automation.
+      </div>
+      <div class="project">
+        <strong>Mini CNC Milling System</strong><br>
+        Cost-effective CNC machine built from scratch with custom G-code interpreter for PCB and engraving tasks.
+      </div>
     </section>
 
-    <section class="section">
+    <section>
       <h2>Research Projects</h2>
       <ul>
-        <li><strong>RSI in Lab Teaching:</strong> Presented at ICECCE 2024 (Malaysia)</li>
-        <li><strong>Teaching Assistant Robot:</strong> Human-centered assistive robot with AI and ROS2 navigation.</li>
-        <li><strong>AI Agent for Mechatronics:</strong> Vision-Language model research for identifying and describing lab components.</li>
+        <li>RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
+        <li>Teaching Assistant Robot – ROS2 autonomous lab navigation</li>
+        <li>AI Agent for Mechatronics – Vision-Language Model for component identification</li>
       </ul>
     </section>
 
-    <section class="section">
-      <h2>University Projects</h2>
+    <section>
+      <h2>Freelance Projects</h2>
       <ul>
-        <li>SLT Pole Detection & OCR</li>
-        <li>Lab Assistant Robot</li>
-        <li>Eggplant Harvesting Robot</li>
-        <li>CNC System</li>
+        <li>Library Management System – Responsive frontend web app</li>
+        <li>Portfolio & Academic Websites – HTML, CSS, React-based UIs</li>
       </ul>
     </section>
 
-    <section class="section">
-      <h2>Freelance Projects (Frontend)</h2>
-      <ul>
-        <li>Library Management System (React.js)</li>
-        <li>Portfolio & Academic Websites</li>
-      </ul>
-    </section>
-
-    <section class="section">
+    <section>
       <h2>Competitions & Certificates</h2>
       <ul>
         <li>🥈 1st Runner-Up – SL Inter-University 3D Printing Make-A-Thon (2025)</li>
         <li>📌 Poster Presentation – WFOT Congress 2026, Thailand</li>
         <li>📜 Publication Certificate – ICECCE 2024</li>
-        <li>📄 Reference Letter – Issued by [Sir’s Name]</li>
+        <li>📄 Reference Letter – Supervisor endorsement</li>
       </ul>
     </section>
 
-    <section class="section">
-      <h2>Gallery</h2>
+    <section>
+      <h2>Project Gallery</h2>
       <div class="gallery">
-        <img src="images/pol.jpg" alt="Pol Detection"/>
-        <img src="images/drowsy.jpg" alt="Drowsiness System"/>
-        <img src="images/telephone.jpg" alt="Telephone Kanu"/>
-        <img src="images/eggplant.jpg" alt="Harvesting Robot"/>
-        <img src="images/cnc.jpg" alt="CNC Machine"/>
-        <img src="images/labrobot.jpg" alt="Lab Assistant Robot"/>
+        <img src="images/pol_detection.jpg" alt="Automated Utility Pole Serial Number Detection" />
+        <img src="images/drowsiness_monitoring.jpg" alt="Drowsiness Monitoring System" />
+        <img src="images/telecom_identification.jpg" alt="Smart Public Telecom Identification" />
+        <img src="images/coconut_quality.jpg" alt="Automated Coconut Quality Inspection" />
+        <img src="images/eggplant_robot.jpg" alt="Autonomous Eggplant Harvesting Robot" />
+        <img src="images/cnc_machine.jpg" alt="Mini CNC Milling System" />
+        <img src="images/library_management.jpg" alt="Library Management System" />
       </div>
     </section>
 
     <footer>
-      &copy; 2025 Ashini Sithmini. All rights reserved.
+      &copy; 2025 Ashini Sithmini
     </footer>
   </div>
 </body>
