@@ -6,65 +6,62 @@
   <title>Ashini Sithmini | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html {
-      scroll-behavior: smooth;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #222;
-      line-height: 1.6;
-      overflow-x: hidden;
-      transition: background-color 0.3s, color 0.3s;
+    /* CSS Variables for theming */
+    :root {
+      --blue: #0077ff;
+      --blue-light: #00bcd4;
+      --orange: #ff6f00;
+      --orange-light: #ffa726;
+      --bg-light: #f5f7fa;
+      --bg-dark: #121212;
+      --text-light: #222;
+      --text-dark: #ddd;
+      --shadow-light: rgba(0, 119, 255, 0.15);
+      --shadow-dark: rgba(255, 167, 38, 0.4);
     }
 
-    /* DARK MODE */
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
     body.dark {
-      background: #121212;
-      color: #ddd;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
     }
-    body.dark nav {
-      background: #1f1f1f;
-      box-shadow: 0 2px 10px rgb(255 255 255 / 0.1);
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
-    body.dark nav ul li a {
-      color: #bbb;
+    a:hover, a:focus {
+      color: var(--orange);
+      outline: none;
     }
-    body.dark nav ul li a.active,
-    body.dark nav ul li a:hover {
-      color: #ffa726;
-      border-bottom: 2px solid #ffa726;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-    body.dark .hero {
-      background: linear-gradient(135deg, #ff6f00 0%, #ffa726 100%);
-      color: #222;
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     }
-    body.dark section {
-      background: #1e1e1e;
-      color: #ddd;
-    }
-    body.dark .projects-list li::before {
-      color: #ffa726;
-    }
-    body.dark ul.simple-list li::before {
-      color: #ffa726;
-    }
-    body.dark .gallery img {
-      box-shadow: 0 8px 15px rgba(255, 167, 38, 0.4);
-    }
-    body.dark .gallery img:hover {
-      box-shadow: 0 15px 30px rgba(255, 167, 38, 0.7);
-    }
-    body.dark footer {
-      border-top: 1px solid #333;
-      color: #aaa;
+    button:focus {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
     }
 
     /* NAVBAR */
@@ -73,82 +70,108 @@
       top: 0;
       width: 100%;
       background: #fff;
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 10px var(--shadow-light);
       z-index: 10000;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-weight: 600;
-      transition: background-color 0.3s, box-shadow 0.3s;
+      transition: background-color 0.35s, box-shadow 0.35s;
+    }
+    body.dark nav {
+      background: #1f1f1f;
+      box-shadow: 0 2px 15px var(--shadow-dark);
     }
     nav .logo {
-      font-size: 1.4rem;
-      color: #0077ff;
-      cursor: pointer;
-      letter-spacing: 2px;
+      font-size: 1.6rem;
+      color: var(--blue);
+      letter-spacing: 3px;
+      font-weight: 700;
       user-select: none;
+      cursor: pointer;
+      transition: color 0.3s;
     }
+    body.dark nav .logo {
+      color: var(--orange);
+    }
+
     nav ul {
-      list-style: none;
       display: flex;
       gap: 2rem;
       align-items: center;
     }
-    nav ul li a {
-      text-decoration: none;
+
+    nav ul li a.nav-link {
       color: #444;
       font-weight: 600;
-      padding: 0.2rem 0.5rem;
-      transition: color 0.3s ease;
+      padding: 0.3rem 0.5rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
       user-select: none;
     }
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #0077ff;
-      border-bottom: 2px solid #0077ff;
+    nav ul li a.nav-link.active,
+    nav ul li a.nav-link:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
     }
-    nav ul li button {
-      background: #ff6f00;
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgb(255 111 0 / 0.4);
-      transition: background 0.3s ease;
-      user-select: none;
+    body.dark nav ul li a.nav-link {
+      color: #bbb;
     }
-    nav ul li button:hover {
-      background: #ffa726;
-      box-shadow: 0 8px 20px rgb(255 167 38 / 0.6);
+    body.dark nav ul li a.nav-link.active,
+    body.dark nav ul li a.nav-link:hover {
+      color: var(--orange);
+      border-bottom-color: var(--orange);
     }
 
-    /* DARK MODE TOGGLE BUTTON */
-    #darkModeToggle {
+    nav ul li button#darkModeToggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: transparent;
-      border: 2px solid #0077ff;
-      color: #0077ff;
-      padding: 0.3rem 0.7rem;
+      border: 2px solid var(--blue);
+      color: var(--blue);
       border-radius: 20px;
-      cursor: pointer;
+      padding: 0.25rem 0.75rem;
       font-weight: 600;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      gap: 0.4rem;
+    }
+    nav ul li button#darkModeToggle:hover,
+    nav ul li button#darkModeToggle:focus {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+      transform: scale(1.1);
+      outline: none;
+    }
+    body.dark nav ul li button#darkModeToggle {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+    body.dark nav ul li button#darkModeToggle:hover,
+    body.dark nav ul li button#darkModeToggle:focus {
+      background: var(--orange);
+      color: var(--text-light);
+      border-color: var(--orange);
+    }
+
+    nav ul li a.resume-btn {
+      background: var(--orange);
+      color: white;
+      padding: 0.45rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: 0 6px 15px rgba(255,111,0,0.4);
       user-select: none;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
     }
-    #darkModeToggle:hover {
-      background: #0077ff;
-      color: white;
-    }
-    body.dark #darkModeToggle {
-      background: #ffa726;
-      border-color: #ffa726;
-      color: #222;
-    }
-    body.dark #darkModeToggle:hover {
-      background: #ff6f00;
-      color: white;
+    nav ul li a.resume-btn:hover,
+    nav ul li a.resume-btn:focus {
+      background: var(--orange-light);
+      box-shadow: 0 8px 25px rgba(255,167,38,0.6);
+      transform: scale(1.05);
+      outline: none;
     }
 
     /* HERO SECTION */
@@ -158,153 +181,212 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #0077ff 0%, #00bcd4 100%);
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
       color: white;
       text-align: center;
       padding: 0 2rem;
-      transition: background 0.3s;
+      transition: background 0.4s ease;
+      user-select: none;
+    }
+    body.dark .hero {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      color: var(--text-light);
     }
     .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 700;
+      font-size: 4rem;
+      font-weight: 900;
       margin-bottom: 1rem;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      text-shadow: 2px 3px 8px rgba(0,0,0,0.3);
       animation: fadeInDown 1s ease forwards;
     }
     .hero p {
-      font-size: 1.4rem;
-      max-width: 600px;
+      font-size: 1.5rem;
+      max-width: 650px;
       animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.5s;
+      animation-delay: 0.4s;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.15);
     }
     .hero .btn-contact {
-      margin-top: 2rem;
-      background: #ff6f00;
+      margin-top: 2.5rem;
+      background: var(--orange);
       color: white;
       border: none;
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       border-radius: 30px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgb(255 111 0 / 0.4);
-      transition: background 0.3s ease;
+      box-shadow: 0 6px 18px rgba(255,111,0,0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.8s;
       user-select: none;
+      text-shadow: 0 0 1px rgba(0,0,0,0.2);
     }
-    .hero .btn-contact:hover {
-      background: #ffa726;
-      box-shadow: 0 8px 20px rgb(255 167 38 / 0.6);
+    .hero .btn-contact:hover,
+    .hero .btn-contact:focus {
+      background: var(--orange-light);
+      box-shadow: 0 10px 30px rgba(255,167,38,0.6);
+      transform: scale(1.05);
+      outline: none;
     }
 
-    /* SECTION COMMON */
+    /* COMMON SECTIONS */
     section {
-      padding: 6rem 2rem 4rem;
+      padding: 5rem 2rem 3rem;
       max-width: 900px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      border-radius: 12px;
+      margin: 0 auto 4rem;
       background: #fff;
-      box-shadow: 0 12px 30px rgb(0 119 255 / 0.1);
-      transition: background 0.3s, color 0.3s, opacity 0.6s ease, transform 0.6s ease;
+      border-radius: 16px;
+      box-shadow: 0 14px 35px var(--shadow-light);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s, color 0.3s;
+      user-select: none;
+    }
+    body.dark section {
+      background: #1e1e1e;
+      color: var(--text-dark);
+      box-shadow: 0 14px 35px var(--shadow-dark);
     }
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
     section h2 {
-      font-weight: 700;
-      color: #0077ff;
-      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue);
+      font-size: 2.3rem;
       margin-bottom: 2rem;
-      border-left: 5px solid #0077ff;
-      padding-left: 0.7rem;
+      border-left: 6px solid var(--blue);
+      padding-left: 0.75rem;
       letter-spacing: 1.5px;
       user-select: none;
+      transition: color 0.35s;
+    }
+    body.dark section h2 {
+      color: var(--orange);
+      border-left-color: var(--orange);
     }
 
     /* ABOUT */
     #about p {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: #444;
-      line-height: 1.7;
+      line-height: 1.8;
       transition: color 0.3s ease;
+    }
+    body.dark #about p {
+      color: var(--text-dark);
     }
 
     /* PROJECTS */
     .projects-list {
-      list-style: none;
-      padding-left: 0;
       color: #333;
+      font-weight: 600;
       transition: color 0.3s ease;
     }
+    body.dark .projects-list {
+      color: var(--text-dark);
+    }
     .projects-list li {
-      margin-bottom: 1.25rem;
-      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-left: 28px;
       position: relative;
-      padding-left: 20px;
       cursor: default;
       transition: color 0.3s ease;
     }
     .projects-list li::before {
       content: "●";
-      color: #ff6f00;
+      color: var(--orange);
       position: absolute;
       left: 0;
-      font-size: 1.3rem;
-      top: 2px;
+      top: 0.4em;
+      font-size: 1.5rem;
       line-height: 0;
+      transition: color 0.3s;
+    }
+    body.dark .projects-list li::before {
+      color: var(--orange-light);
     }
     .projects-list li:hover {
-      color: #0077ff;
+      color: var(--blue);
+    }
+    body.dark .projects-list li:hover {
+      color: var(--orange-light);
     }
     .projects-list li strong {
       color: #222;
       transition: color 0.3s ease;
     }
+    body.dark .projects-list li strong {
+      color: var(--text-dark);
+    }
 
-    /* FREELANCE, RESEARCH, COMPETITIONS */
+    /* SIMPLE LISTS */
     ul.simple-list {
-      list-style: none;
-      padding-left: 0;
       color: #444;
       font-weight: 500;
       transition: color 0.3s ease;
+      padding-left: 1.2rem;
+    }
+    body.dark ul.simple-list {
+      color: var(--text-dark);
     }
     ul.simple-list li {
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       padding-left: 1rem;
       position: relative;
       cursor: default;
     }
     ul.simple-list li::before {
       content: "▪";
-      color: #ff6f00;
+      color: var(--orange);
       position: absolute;
       left: 0;
       top: 0;
+      font-size: 1.1rem;
+    }
+    body.dark ul.simple-list li::before {
+      color: var(--orange-light);
     }
 
     /* GALLERY */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
     }
     .gallery img {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 15px rgba(0, 119, 255, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px var(--shadow-light);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
       cursor: pointer;
       user-select: none;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 30px rgba(0, 119, 255, 0.4);
+    body.dark .gallery img {
+      box-shadow: 0 10px 25px var(--shadow-dark);
+    }
+    .gallery img:hover,
+    .gallery img:focus {
+      transform: scale(1.07);
+      box-shadow: 0 20px 40px var(--shadow-light);
+      outline: none;
+    }
+    body.dark .gallery img:hover,
+    body.dark .gallery img:focus {
+      box-shadow: 0 20px 40px var(--shadow-dark);
+    }
+
+    /* CONTACT */
+    #contact p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+    #contact a {
+      font-weight: 600;
     }
 
     /* FOOTER */
@@ -314,9 +396,13 @@
       font-size: 1rem;
       color: #888;
       border-top: 1px solid #ddd;
-      margin-top: 4rem;
+      margin-top: 6rem;
       user-select: none;
       transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    body.dark footer {
+      border-top-color: #333;
+      color: #aaa;
     }
 
     /* SOCIAL SIDE BAR */
@@ -327,253 +413,106 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      background: #0077ff;
-      padding: 0.5rem 0.8rem;
+      gap: 1.25rem;
+      background: var(--blue);
+      padding: 0.6rem 1rem;
       border-top-right-radius: 12px;
       border-bottom-right-radius: 12px;
-      box-shadow: 2px 2px 10px rgb(0 119 255 / 0.5);
+      box-shadow: 2px 2px 10px rgba(0,119,255,0.5);
       z-index: 9999;
       transition: background-color 0.3s ease;
+      user-select: none;
     }
     body.dark .social-sidebar {
-      background: #ffa726;
-      box-shadow: 2px 2px 10px rgb(255 167 38 / 0.7);
+      background: var(--orange);
+      box-shadow: 2px 2px 12px rgba(255,167,38,0.7);
     }
     .social-sidebar a {
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       text-align: center;
       display: block;
-      padding: 0.4rem 0.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
+      padding: 0.5rem 0.8rem;
       border-radius: 8px;
-      user-select: none;
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
     }
-    .social-sidebar a:hover {
-      color: #222;
+    .social-sidebar a:hover,
+    .social-sidebar a:focus {
+      color: var(--blue);
       background: white;
-      transform: scale(1.2);
+      transform: scale(1.3);
+      outline: none;
+    }
+    body.dark .social-sidebar a:hover,
+    body.dark .social-sidebar a:focus {
+      color: var(--orange);
+      background: white;
+      transform: scale(1.3);
+      outline: none;
     }
 
-    /* ICONS - Using SVG inline below */
+    /* Scroll To Top Button */
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 30px;
+      background: var(--orange);
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 50%;
+      box-shadow: 0 6px 15px rgba(255,111,0,0.5);
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10001;
+    }
+    #scrollToTopBtn.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #scrollToTopBtn:hover,
+    #scrollToTopBtn:focus {
+      background: var(--orange-light);
+      outline: none;
+      box-shadow: 0 8px 25px rgba(255,167,38,0.7);
+      transform: scale(1.1);
+    }
 
     /* Animations */
     @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-50px);}
+      from {opacity: 0; transform: translateY(-40px);}
       to {opacity: 1; transform: translateY(0);}
     }
     @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(50px);}
+      from {opacity: 0; transform: translateY(40px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
     /* Responsive */
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       nav ul {
-        gap: 1rem;
+        gap: 1.2rem;
       }
       .hero h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
       }
       .hero p {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        max-width: 90vw;
       }
       .gallery {
-        grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-      }
-      .social-sidebar {
-        top: auto;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
-        padding: 0.4rem 1rem;
-        border-radius: 0;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-        box-shadow: 0 -2px 10px rgb(0 119 255 / 0.5);
-      }
-      body.dark .social-sidebar {
-        box-shadow: 0 -2px 10px rgb(255 167 38 / 0.7);
-      }
-      .social-sidebar a {
-        font-size: 1.4rem;
-        padding: 0.4rem 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
       }
     }
-  </style>
-</head>
-<body>
-
-  <nav>
-    <div class="logo" tabindex="0">ASHINI</div>
-    <ul>
-      <li><a href="#about" class="nav-link active">About</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#research" class="nav-link">Research</a></li>
-      <li><a href="#freelance" class="nav-link">Freelance</a></li>
-      <li><a href="#competitions" class="nav-link">Competitions</a></li>
-      <li><a href="#gallery" class="nav-link">Gallery</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-      <li>
-        <button id="darkModeToggle" aria-label="Toggle Dark Mode">Dark Mode</button>
-      </li>
-      <li>
-        <a href="Ashini_Sithmini_Resume.pdf" download="Ashini_Sithmini_Resume.pdf" 
-           style="background:#ff6f00; color:#fff; padding: 0.4rem 1rem; border-radius:30px; font-weight:700; box-shadow: 0 6px 15px rgb(255 111 0 / 0.4); text-decoration:none; user-select:none;">
-          Resume
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <section class="hero" id="home" tabindex="0" aria-label="Introduction">
-    <h1>ASHINI SITHMINI</h1>
-    <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
-    <button class="btn-contact" onclick="window.location='mailto:ashinirupasinghe99@gmail.com'" aria-label="Send Email">Get in Touch</button>
-  </section>
-
-  <section id="about" class="section" tabindex="0" aria-label="About Me Section">
-    <h2>About Me</h2>
-    <p>
-      I’m a passionate Mechatronics Engineering graduate from SLTC, ranked top 10% with a GPA of 3.53.
-      I specialize in robotics, AI, computer vision, and autonomous systems, combining software and hardware expertise to build innovative solutions for real-world problems.
-    </p>
-  </section>
-
-  <section id="projects" class="section" tabindex="0" aria-label="Key Projects Section">
-    <h2>Key Projects</h2>
-    <ul class="projects-list">
-      <li><strong>Automated Utility Pole Serial Number Detection:</strong> Using Google Gemini Vision API to detect serial numbers on concrete poles for infrastructure monitoring.</li>
-      <li><strong>Drowsiness Monitoring System:</strong> Real-time detection of eye blinks, head position, and heart rate to improve driver safety.</li>
-      <li><strong>Smart Public Telecom Identification System:</strong> IoT & OCR system with Mobitel & SLT to recognize telephone booth serial numbers automatically.</li>
-      <li><strong>Automated Coconut Quality Inspection:</strong> Deep learning + computer vision for grading coconuts on conveyor belts.</li>
-      <li><strong>Autonomous Eggplant Harvesting Robot:</strong> 4WD mobile robot with robotic arm and vision guidance for precision agriculture.</li>
-      <li><strong>Mini CNC Milling System:</strong> Low-cost CNC machine with a custom G-code interpreter for PCB and engraving.</li>
-    </ul>
-  </section>
-
-  <section id="research" class="section" tabindex="0" aria-label="Research Projects Section">
-    <h2>Research Projects</h2>
-    <ul class="simple-list">
-      <li>RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
-      <li>Teaching Assistant Robot – ROS2 autonomous navigation</li>
-      <li>AI Agent for Mechatronics – Vision-Language Model for component identification</li>
-    </ul>
-  </section>
-
-  <section id="freelance" class="section" tabindex="0" aria-label="Freelance Projects Section">
-    <h2>Freelance Projects</h2>
-    <ul class="simple-list">
-      <li>Library Management System – Responsive frontend web app</li>
-      <li>Portfolio & Academic Websites – HTML, CSS, React-based</li>
-    </ul>
-  </section>
-
-  <section id="competitions" class="section" tabindex="0" aria-label="Competitions and Certificates Section">
-    <h2>Competitions & Certificates</h2>
-    <ul class="simple-list">
-      <li>🥈 1st Runner-Up – SL Inter-University 3D Printing Make-A-Thon (2025)</li>
-      <li>📌 Poster Presentation – WFOT Congress 2026, Thailand</li>
-      <li>📜 Publication Certificate – ICECCE 2024</li>
-      <li>📄 Reference Letter – Supervisor endorsement</li>
-    </ul>
-  </section>
-
-  <section id="gallery" class="section" tabindex="0" aria-label="Project Gallery Section">
-    <h2>Project Gallery</h2>
-    <div class="gallery">
-      <img src="images/pol_detection.jpg" alt="Utility Pole Serial Number Detection" loading="lazy" />
-      <img src="images/drowsiness_monitoring.jpg" alt="Drowsiness Monitoring System" loading="lazy" />
-      <img src="images/telecom_identification.jpg" alt="Smart Public Telecom Identification" loading="lazy" />
-      <img src="images/coconut_quality.jpg" alt="Automated Coconut Quality Inspection" loading="lazy" />
-      <img src="images/eggplant_robot.jpg" alt="Autonomous Eggplant Harvesting Robot" loading="lazy" />
-      <img src="images/cnc_machine.jpg" alt="Mini CNC Milling System" loading="lazy" />
-      <img src="images/library_management.jpg" alt="Library Management System" loading="lazy" />
-    </div>
-  </section>
-
-  <section id="contact" class="section" tabindex="0" aria-label="Contact Section">
-    <h2>Contact</h2>
-    <p>
-      📧 <a href="mailto:ashinirupasinghe99@gmail.com" style="color: #0077ff;">ashinirupasinghe99@gmail.com</a><br />
-      📞 <a href="tel:0766841994" style="color: #0077ff;">0766841994</a><br />
-      🔗 <a href="#" style="color: #0077ff;">LinkedIn</a> | 🧠 <a href="#" style="color: #0077ff;">GitHub</a>
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 Ashini Sithmini
-  </footer>
-
-  <!-- SOCIAL SIDE BAR -->
-  <div class="social-sidebar" aria-label="Social Media Links">
-    <a href="#" target="_blank" aria-label="LinkedIn" title="LinkedIn">
-      <!-- LinkedIn SVG icon -->
-      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8.8 17.2V10.4H6.2V17.2H8.8M7.5 9.4A1.4 1.4 0 1 0 7.5 6.6A1.4 1.4 0 0 0 7.5 9.4M17.8 17.2V13.4C17.8 11.5 16.5 10.7 15.4 10.7C14.7 10.7 14 11.3 13.8 11.8H13.7V10.4H11.1V17.2H13.7V13.7C13.7 12.9 14.1 12.5 14.6 12.5C15.2 12.5 15.6 13 15.6 13.7V17.2H17.8Z"></path>
-      </svg>
-    </a>
-    <a href="#" target="_blank" aria-label="GitHub" title="GitHub">
-      <!-- GitHub SVG icon -->
-      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M12,2A10,10 0 0,0 2,12C2,16.41 5.07,20.18 9.16,21.5C9.66,21.56 9.82,21.27 9.82,21.02C9.82,20.8 9.81,20.19 9.8,19.42C6.73,20.09 6.14,17.79 6.14,17.79C5.68,16.66 5.03,16.4 5.03,16.4C4.12,15.81 5.1,15.82 5.1,15.82C6.11,15.9 6.63,16.87 6.63,16.87C7.51,18.4 9.02,17.94 9.56,17.68C9.62,17.05 9.85,16.64 10.1,16.39C7.78,16.14 5.34,15.18 5.34,10.88C5.34,9.65 5.79,8.67 6.53,7.92C6.43,7.67 6.03,6.56 6.63,5.02C6.63,5.02 7.57,4.74 9.82,6.3C10.7,6.09 11.64,6 12.58,6C13.52,6 14.46,6.09 15.34,6.3C17.58,4.74 18.52,5.02 18.52,5.02C19.12,6.56 18.72,7.67 18.62,7.92C19.36,8.67 19.81,9.65 19.81,10.88C19.81,15.19 17.36,16.14 15.04,16.39C15.4,16.7 15.72,17.33 15.72,18.32C15.72,19.7 15.7,20.74 15.7,21.02C15.7,21.27 15.86,21.57 16.37,21.5C20.43,20.18 23.5,16.41 23.5,12A10,10 0 0,0 12,2Z"></path>
-      </svg>
-    </a>
-    <a href="mailto:ashinirupasinghe99@gmail.com" aria-label="Email" title="Email">
-      <!-- Email SVG icon -->
-      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M20,4A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20M20,8L12,13L4,8V6L12,11L20,6V8Z"></path>
-      </svg>
-    </a>
-  </div>
-
-  <footer>
-    &copy; 2025 Ashini Sithmini
-  </footer>
-
-  <script>
-    // Scroll reveal animation for sections
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('nav ul li a.nav-link');
-
-    function revealOnScroll() {
-      let scrollY = window.pageYOffset;
-      sections.forEach(section => {
-        if (scrollY + window.innerHeight > section.offsetTop + 100) {
-          section.classList.add('visible');
-        }
-      });
-
-      // Highlight nav links
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.offsetHeight;
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === section.id) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    }
-
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
-
-    // Dark Mode Toggle
-    const toggleBtn = document.getElementById('darkModeToggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if(document.body.classList.contains('dark')){
-        toggleBtn.textContent = 'Light Mode';
-      } else {
-        toggleBtn.textContent = 'Dark Mode';
+    @media (max-width: 700px) {
+      nav ul {
+        gap: 0.8rem;
       }
-    });
-  </script>
-</body>
-</html>
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+      .hero p {
+        font-size: 1.
