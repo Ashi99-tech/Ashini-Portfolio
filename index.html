@@ -1,61 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashini Sithmini | AI & Robotics Engineer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e2f1f07b.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashini Sithmini | Portfolio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #e0f7fa, #fff3e0);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ff4081, #7c4dff);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      font-weight: bold;
+    }
+
+    h2 {
+      border-bottom: 2px solid #7c4dff;
+      padding-bottom: 5px;
+      color: #6a1b9a;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .contact p, footer p {
+      margin: 0.3rem 0;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      animation: slideUp 1s ease;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #7c4dff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="hero">
-        <img src="assets/profile.png" alt="Ashini Sithmini">
-        <div class="intro">
-          <h1>Ashini Sithmini</h1>
-          <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
-          <div class="contact">
-            <a href="mailto:ashinirupasinghe99@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="tel:+94766841994"><i class="fas fa-phone"></i> Call</a>
-            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="#"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-      </div>
-    </header>
+  <header>
+    <h1>Ashini Sithmini</h1>
+    <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
+    <div class="contact">
+      <p>📧 ashinirupasinghe99@gmail.com | 📞 0766841994</p>
+      <p>🔗 <a href="#">LinkedIn</a> | 🧠 <a href="#">GitHub</a></p>
+    </div>
+  </header>
 
-    <section class="projects">
-      <h2>Projects</h2>
+  <div class="container">
+    <section>
+      <h2>About Me</h2>
+      <p>Graduate in Mechatronics Engineering from SLTC (Top 10%, GPA 3.53). Passionate about AI, robotics, and multimodal systems. My expertise spans autonomous systems, computer vision, and human-centered design.</p>
+    </section>
+
+    <section>
+      <h2>Research Projects</h2>
       <ul>
-        <li><strong>Lab Assistant Robot:</strong> ROS2-based autonomous navigation, computer vision, and AI capabilities.</li>
-        <li><strong>Chameleon Robot:</strong> 3D modeling, kinematics, and path planning.</li>
-        <li><strong>AI Agent:</strong> Vision-Language Models (VLMs) for robotic perception.</li>
-        <li><strong>Eggplant Robot:</strong> 4WD mobile robot with robotic arm and computer vision (personal project).</li>
+        <li><strong>Teaching Assistant Robot:</strong> Autonomous robot using ROS2 and AI for lab support.</li>
+        <li><strong>AI Agent:</strong> Vision-Language Model integration for mechatronics object recognition.</li>
+        <li><strong>Published Paper:</strong> RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
       </ul>
     </section>
 
-    <section class="cards">
-      <div class="card">
-        <h2>Achievements</h2>
-        <ul>
-          <li>📄 <strong>Research Paper:</strong> RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
-          <li>🥈 1st Runner-Up: SL Inter-University 3D Printing Make-A-Thon (2025)</li>
-          <li>📌 Poster Accepted: WFOT Congress 2026, Thailand</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Goals</h2>
-        <p>
-          My long-term goal is to pursue MSc and PhD studies focused on intelligent, assistive robotic systems that contribute to solving real-world problems.
-        </p>
+    <section>
+      <h2>University Projects</h2>
+      <ul>
+        <li><strong>Pol Detection System:</strong> YOLO-based detection and OCR text extraction.</li>
+        <li><strong>Drowsiness Monitoring:</strong> Eye-blink and head-down detection with heart rate monitoring.</li>
+        <li><strong>Telephone Kanu:</strong> IoT-based telephone booth monitoring system.</li>
+        <li><strong>Eggplant Harvesting Robot:</strong> Mobile robot with robotic arm and vision guidance.</li>
+        <li><strong>CNC System:</strong> Low-cost mini CNC with G-code parser.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Freelance Projects</h2>
+      <ul>
+        <li><strong>Library Management System:</strong> Frontend UI with book tracking and search system.</li>
+        <li><strong>Websites:</strong> Designed responsive web UIs using HTML/CSS/JS for clients.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Competitions</h2>
+      <ul>
+        <li>🥈 1st Runner-Up: SL Inter-University 3D Printing Make-A-Thon (2025)</li>
+        <li>📌 Poster Accepted: WFOT Congress 2026, Thailand</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Certificates & Letters</h2>
+      <ul>
+        <li>📄 <a href="#">Publication Certificate (ICECCE 2024)</a></li>
+        <li>🏆 <a href="#">Competition Participation Certificate</a></li>
+        <li>📩 <a href="#">Reference Letter from Supervisor</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Project Gallery</h2>
+      <div class="gallery">
+        <img src="images/pol.jpg" alt="Pol Detection System"/>
+        <img src="images/drowsiness.jpg" alt="Drowsiness Detection"/>
+        <img src="images/telephone.jpg" alt="Telephone Kanu"/>
+        <img src="images/teaching_robot.jpg" alt="Teaching Assistant Robot"/>
+        <img src="images/eggplant.jpg" alt="Eggplant Robot"/>
+        <img src="images/cnc.jpg" alt="CNC System"/>
+        <img src="images/library.jpg" alt="Library System"/>
       </div>
     </section>
 
-    <footer>
-      <p>&copy; 2025 Ashini Sithmini</p>
-    </footer>
+    <section>
+      <h2>Future Goals</h2>
+      <p>I aim to pursue MSc and PhD studies in assistive robotics, focusing on building intelligent systems that solve human-centered challenges.</p>
+    </section>
   </div>
+
+  <footer>
+    <p>&copy; 2025 Ashini Sithmini</p>
+  </footer>
 </body>
 </html>
