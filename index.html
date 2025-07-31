@@ -4,321 +4,576 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ashini Sithmini | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
+    /* Reset */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
     }
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+      background: #f5f7fa;
       color: #222;
       line-height: 1.6;
       overflow-x: hidden;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(248, 181, 0, 0.3);
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    h1, h2 {
-      color: #ff6f00;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
+    /* DARK MODE */
+    body.dark {
+      background: #121212;
+      color: #ddd;
+    }
+    body.dark nav {
+      background: #1f1f1f;
+      box-shadow: 0 2px 10px rgb(255 255 255 / 0.1);
+    }
+    body.dark nav ul li a {
+      color: #bbb;
+    }
+    body.dark nav ul li a.active,
+    body.dark nav ul li a:hover {
+      color: #ffa726;
+      border-bottom: 2px solid #ffa726;
+    }
+    body.dark .hero {
+      background: linear-gradient(135deg, #ff6f00 0%, #ffa726 100%);
+      color: #222;
+    }
+    body.dark section {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    body.dark .projects-list li::before {
+      color: #ffa726;
+    }
+    body.dark ul.simple-list li::before {
+      color: #ffa726;
+    }
+    body.dark .gallery img {
+      box-shadow: 0 8px 15px rgba(255, 167, 38, 0.4);
+    }
+    body.dark .gallery img:hover {
+      box-shadow: 0 15px 30px rgba(255, 167, 38, 0.7);
+    }
+    body.dark footer {
+      border-top: 1px solid #333;
+      color: #aaa;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+      z-index: 10000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    nav .logo {
+      font-size: 1.4rem;
+      color: #0077ff;
+      cursor: pointer;
       letter-spacing: 2px;
-      position: relative;
+      user-select: none;
     }
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-top: 1rem;
-      animation: bounceInDown 1s ease forwards;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
     }
-    h2 {
-      font-size: 2rem;
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.3rem;
-      cursor: default;
+    nav ul li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.3s ease;
+      user-select: none;
     }
-    h2::after {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 4px;
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #0077ff;
+      border-bottom: 2px solid #0077ff;
+    }
+    nav ul li button {
       background: #ff6f00;
-      bottom: 0;
-      left: 0;
-      border-radius: 4px;
-      animation: underlineExpand 1s ease forwards;
-      opacity: 0;
-      transform-origin: left;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgb(255 111 0 / 0.4);
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    nav ul li button:hover {
+      background: #ffa726;
+      box-shadow: 0 8px 20px rgb(255 167 38 / 0.6);
+    }
+
+    /* DARK MODE TOGGLE BUTTON */
+    #darkModeToggle {
+      background: transparent;
+      border: 2px solid #0077ff;
+      color: #0077ff;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    #darkModeToggle:hover {
+      background: #0077ff;
+      color: white;
+    }
+    body.dark #darkModeToggle {
+      background: #ffa726;
+      border-color: #ffa726;
+      color: #222;
+    }
+    body.dark #darkModeToggle:hover {
+      background: #ff6f00;
+      color: white;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0077ff 0%, #00bcd4 100%);
+      color: white;
+      text-align: center;
+      padding: 0 2rem;
+      transition: background 0.3s;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      animation: fadeInDown 1s ease forwards;
+    }
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 600px;
+      animation: fadeInUp 1s ease forwards;
       animation-delay: 0.5s;
     }
-    h2:hover::after {
-      background: #ffa726;
-    }
-
-    p, li {
-      font-size: 1.1rem;
-      color: #444;
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    li {
-      margin-bottom: 0.6rem;
-    }
-
-    a {
-      color: #ff6f00;
+    .hero .btn-contact {
+      margin-top: 2rem;
+      background: #ff6f00;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
       font-weight: 700;
-      text-decoration: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgb(255 111 0 / 0.4);
+      transition: background 0.3s ease;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.8s;
+      user-select: none;
+    }
+    .hero .btn-contact:hover {
+      background: #ffa726;
+      box-shadow: 0 8px 20px rgb(255 167 38 / 0.6);
+    }
+
+    /* SECTION COMMON */
+    section {
+      padding: 6rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgb(0 119 255 / 0.1);
+      transition: background 0.3s, color 0.3s, opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-weight: 700;
+      color: #0077ff;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      border-left: 5px solid #0077ff;
+      padding-left: 0.7rem;
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+
+    /* ABOUT */
+    #about p {
+      font-size: 1.15rem;
+      color: #444;
+      line-height: 1.7;
       transition: color 0.3s ease;
     }
-    a:hover {
-      color: #ffa726;
-      text-decoration: underline;
+
+    /* PROJECTS */
+    .projects-list {
+      list-style: none;
+      padding-left: 0;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    .projects-list li {
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      position: relative;
+      padding-left: 20px;
+      cursor: default;
+      transition: color 0.3s ease;
+    }
+    .projects-list li::before {
+      content: "●";
+      color: #ff6f00;
+      position: absolute;
+      left: 0;
+      font-size: 1.3rem;
+      top: 2px;
+      line-height: 0;
+    }
+    .projects-list li:hover {
+      color: #0077ff;
+    }
+    .projects-list li strong {
+      color: #222;
+      transition: color 0.3s ease;
     }
 
-    header, section {
-      animation: fadeUp 1.5s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
-      animation-fill-mode: forwards;
+    /* FREELANCE, RESEARCH, COMPETITIONS */
+    ul.simple-list {
+      list-style: none;
+      padding-left: 0;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-      animation-delay: 0.3s;
+    ul.simple-list li {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      position: relative;
+      cursor: default;
     }
-
-    .contact {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #555;
-    }
-    .contact a {
-      margin: 0 10px;
-      background: #ff6f00;
-      padding: 6px 12px;
-      border-radius: 8px;
-      color: white;
-      box-shadow: 0 4px 8px rgba(255,111,0,0.4);
-      transition: background 0.3s ease;
-    }
-    .contact a:hover {
-      background: #ffa726;
-      box-shadow: 0 6px 14px rgba(255,167,38,0.6);
+    ul.simple-list li::before {
+      content: "▪";
+      color: #ff6f00;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
-    .project {
-      margin-bottom: 1.8rem;
-      padding: 1rem 1.2rem;
-      border-left: 6px solid #ff6f00;
-      background: #fff8e1;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(255, 111, 0, 0.1);
-      transition: background 0.3s ease;
-    }
-    .project:hover {
-      background: #fff3d6;
-    }
-
+    /* GALLERY */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-      gap: 20px;
-      margin-top: 1rem;
-      animation: fadeUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
-      animation-fill-mode: forwards;
-      animation-delay: 1.2s;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 1.5rem;
     }
     .gallery img {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(255, 111, 0, 0.25);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 119, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      filter: drop-shadow(0 0 0.3rem #ff6f00aa);
+      user-select: none;
     }
     .gallery img:hover {
-      transform: scale(1.07);
-      box-shadow: 0 15px 35px rgba(255, 167, 38, 0.7);
-      filter: drop-shadow(0 0 0.8rem #ffa726cc);
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 119, 255, 0.4);
     }
 
+    /* FOOTER */
     footer {
       text-align: center;
-      margin-top: 3rem;
-      padding: 1.2rem 0;
+      padding: 2rem 1rem;
       font-size: 1rem;
-      color: #555;
-      border-top: 1px solid #ffd95b;
-      animation: fadeUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
-      animation-fill-mode: forwards;
-      animation-delay: 1.5s;
+      color: #888;
+      border-top: 1px solid #ddd;
+      margin-top: 4rem;
+      user-select: none;
+      transition: color 0.3s ease, border-color 0.3s ease;
     }
+
+    /* SOCIAL SIDE BAR */
+    .social-sidebar {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #0077ff;
+      padding: 0.5rem 0.8rem;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 2px 2px 10px rgb(0 119 255 / 0.5);
+      z-index: 9999;
+      transition: background-color 0.3s ease;
+    }
+    body.dark .social-sidebar {
+      background: #ffa726;
+      box-shadow: 2px 2px 10px rgb(255 167 38 / 0.7);
+    }
+    .social-sidebar a {
+      color: white;
+      font-size: 1.6rem;
+      text-align: center;
+      display: block;
+      padding: 0.4rem 0.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      border-radius: 8px;
+      user-select: none;
+    }
+    .social-sidebar a:hover {
+      color: #222;
+      background: white;
+      transform: scale(1.2);
+    }
+
+    /* ICONS - Using SVG inline below */
 
     /* Animations */
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-50px);}
+      to {opacity: 1; transform: translateY(0);}
     }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    @keyframes bounceInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-200px);
-      }
-      60% {
-        opacity: 1;
-        transform: translateY(30px);
-      }
-      80% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-    @keyframes underlineExpand {
-      to {
-        opacity: 1;
-        transform: scaleX(1);
-      }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(50px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    @media(max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
+    /* Responsive */
+    @media (max-width: 700px) {
+      nav ul {
+        gap: 1rem;
       }
-      h2 {
-        font-size: 1.5rem;
+      .hero h1 {
+        font-size: 2.8rem;
       }
-      .gallery img {
-        height: 130px;
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .gallery {
+        grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      }
+      .social-sidebar {
+        top: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        padding: 0.4rem 1rem;
+        border-radius: 0;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        box-shadow: 0 -2px 10px rgb(0 119 255 / 0.5);
+      }
+      body.dark .social-sidebar {
+        box-shadow: 0 -2px 10px rgb(255 167 38 / 0.7);
+      }
+      .social-sidebar a {
+        font-size: 1.4rem;
+        padding: 0.4rem 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Ashini Sithmini</h1>
-      <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
-      <div class="contact">
-        📧 <a href="mailto:ashinirupasinghe99@gmail.com">ashinirupasinghe99@gmail.com</a> |
-        📞 <a href="tel:0766841994">0766841994</a><br />
-        🔗 <a href="#">LinkedIn</a> |
-        🧠 <a href="#">GitHub</a>
-      </div>
-    </header>
 
-    <section>
-      <h2>About Me</h2>
-      <p>I’m a passionate Mechatronics Engineering graduate from SLTC, ranked top 10% with a GPA of 3.53. I specialize in robotics, AI, computer vision, and autonomous systems, combining software and hardware expertise to build innovative solutions for real-world problems.</p>
-    </section>
+  <nav>
+    <div class="logo" tabindex="0">ASHINI</div>
+    <ul>
+      <li><a href="#about" class="nav-link active">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#research" class="nav-link">Research</a></li>
+      <li><a href="#freelance" class="nav-link">Freelance</a></li>
+      <li><a href="#competitions" class="nav-link">Competitions</a></li>
+      <li><a href="#gallery" class="nav-link">Gallery</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li>
+        <button id="darkModeToggle" aria-label="Toggle Dark Mode">Dark Mode</button>
+      </li>
+      <li>
+        <a href="Ashini_Sithmini_Resume.pdf" download="Ashini_Sithmini_Resume.pdf" 
+           style="background:#ff6f00; color:#fff; padding: 0.4rem 1rem; border-radius:30px; font-weight:700; box-shadow: 0 6px 15px rgb(255 111 0 / 0.4); text-decoration:none; user-select:none;">
+          Resume
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <section>
-      <h2>Key Projects</h2>
-      <div class="project">
-        <strong>Automated Utility Pole Serial Number Detection</strong><br>
-        Leveraging Google Gemini Vision API to detect and read serial numbers printed on concrete utility poles, enabling infrastructure monitoring and asset management.
-      </div>
-      <div class="project">
-        <strong>Drowsiness Monitoring System</strong><br>
-        Real-time detection of eye blinks, head position, and heart rate to prevent driver fatigue and improve road safety.
-      </div>
-      <div class="project">
-        <strong>Smart Public Telecom Identification System</strong><br>
-        IoT & OCR-based system developed with Mobitel & SLT for automatic serial number recognition in public telephone booths.
-      </div>
-      <div class="project">
-        <strong>Automated Coconut Quality Inspection</strong><br>
-        Deep learning and computer vision integrated with conveyor belt systems to automate coconut grading and quality assessment.
-      </div>
-      <div class="project">
-        <strong>Autonomous Eggplant Harvesting Robot</strong><br>
-        4WD mobile robot with robotic arm and vision guidance for precision agriculture and harvesting automation.
-      </div>
-      <div class="project">
-        <strong>Mini CNC Milling System</strong><br>
-        Cost-effective CNC machine built from scratch with custom G-code interpreter for PCB and engraving tasks.
-      </div>
-    </section>
+  <section class="hero" id="home" tabindex="0" aria-label="Introduction">
+    <h1>ASHINI SITHMINI</h1>
+    <p>BSc Mechatronics Engineering | AI & Robotics Researcher</p>
+    <button class="btn-contact" onclick="window.location='mailto:ashinirupasinghe99@gmail.com'" aria-label="Send Email">Get in Touch</button>
+  </section>
 
-    <section>
-      <h2>Research Projects</h2>
-      <ul>
-        <li>RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
-        <li>Teaching Assistant Robot – ROS2 autonomous lab navigation</li>
-        <li>AI Agent for Mechatronics – Vision-Language Model for component identification</li>
-      </ul>
-    </section>
+  <section id="about" class="section" tabindex="0" aria-label="About Me Section">
+    <h2>About Me</h2>
+    <p>
+      I’m a passionate Mechatronics Engineering graduate from SLTC, ranked top 10% with a GPA of 3.53.
+      I specialize in robotics, AI, computer vision, and autonomous systems, combining software and hardware expertise to build innovative solutions for real-world problems.
+    </p>
+  </section>
 
-    <section>
-      <h2>Freelance Projects</h2>
-      <ul>
-        <li>Library Management System – Responsive frontend web app</li>
-        <li>Portfolio & Academic Websites – HTML, CSS, React-based UIs</li>
-      </ul>
-    </section>
+  <section id="projects" class="section" tabindex="0" aria-label="Key Projects Section">
+    <h2>Key Projects</h2>
+    <ul class="projects-list">
+      <li><strong>Automated Utility Pole Serial Number Detection:</strong> Using Google Gemini Vision API to detect serial numbers on concrete poles for infrastructure monitoring.</li>
+      <li><strong>Drowsiness Monitoring System:</strong> Real-time detection of eye blinks, head position, and heart rate to improve driver safety.</li>
+      <li><strong>Smart Public Telecom Identification System:</strong> IoT & OCR system with Mobitel & SLT to recognize telephone booth serial numbers automatically.</li>
+      <li><strong>Automated Coconut Quality Inspection:</strong> Deep learning + computer vision for grading coconuts on conveyor belts.</li>
+      <li><strong>Autonomous Eggplant Harvesting Robot:</strong> 4WD mobile robot with robotic arm and vision guidance for precision agriculture.</li>
+      <li><strong>Mini CNC Milling System:</strong> Low-cost CNC machine with a custom G-code interpreter for PCB and engraving.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Competitions & Certificates</h2>
-      <ul>
-        <li>🥈 1st Runner-Up – SL Inter-University 3D Printing Make-A-Thon (2025)</li>
-        <li>📌 Poster Presentation – WFOT Congress 2026, Thailand</li>
-        <li>📜 Publication Certificate – ICECCE 2024</li>
-        <li>📄 Reference Letter – Supervisor endorsement</li>
-      </ul>
-    </section>
+  <section id="research" class="section" tabindex="0" aria-label="Research Projects Section">
+    <h2>Research Projects</h2>
+    <ul class="simple-list">
+      <li>RSI in Lab Teaching – ICECCE 2024, Malaysia</li>
+      <li>Teaching Assistant Robot – ROS2 autonomous navigation</li>
+      <li>AI Agent for Mechatronics – Vision-Language Model for component identification</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Project Gallery</h2>
-      <div class="gallery">
-        <img src="images/pol_detection.jpg" alt="Automated Utility Pole Serial Number Detection" />
-        <img src="images/drowsiness_monitoring.jpg" alt="Drowsiness Monitoring System" />
-        <img src="images/telecom_identification.jpg" alt="Smart Public Telecom Identification" />
-        <img src="images/coconut_quality.jpg" alt="Automated Coconut Quality Inspection" />
-        <img src="images/eggplant_robot.jpg" alt="Autonomous Eggplant Harvesting Robot" />
-        <img src="images/cnc_machine.jpg" alt="Mini CNC Milling System" />
-        <img src="images/library_management.jpg" alt="Library Management System" />
-      </div>
-    </section>
+  <section id="freelance" class="section" tabindex="0" aria-label="Freelance Projects Section">
+    <h2>Freelance Projects</h2>
+    <ul class="simple-list">
+      <li>Library Management System – Responsive frontend web app</li>
+      <li>Portfolio & Academic Websites – HTML, CSS, React-based</li>
+    </ul>
+  </section>
 
-    <footer>
-      &copy; 2025 Ashini Sithmini
-    </footer>
+  <section id="competitions" class="section" tabindex="0" aria-label="Competitions and Certificates Section">
+    <h2>Competitions & Certificates</h2>
+    <ul class="simple-list">
+      <li>🥈 1st Runner-Up – SL Inter-University 3D Printing Make-A-Thon (2025)</li>
+      <li>📌 Poster Presentation – WFOT Congress 2026, Thailand</li>
+      <li>📜 Publication Certificate – ICECCE 2024</li>
+      <li>📄 Reference Letter – Supervisor endorsement</li>
+    </ul>
+  </section>
+
+  <section id="gallery" class="section" tabindex="0" aria-label="Project Gallery Section">
+    <h2>Project Gallery</h2>
+    <div class="gallery">
+      <img src="images/pol_detection.jpg" alt="Utility Pole Serial Number Detection" loading="lazy" />
+      <img src="images/drowsiness_monitoring.jpg" alt="Drowsiness Monitoring System" loading="lazy" />
+      <img src="images/telecom_identification.jpg" alt="Smart Public Telecom Identification" loading="lazy" />
+      <img src="images/coconut_quality.jpg" alt="Automated Coconut Quality Inspection" loading="lazy" />
+      <img src="images/eggplant_robot.jpg" alt="Autonomous Eggplant Harvesting Robot" loading="lazy" />
+      <img src="images/cnc_machine.jpg" alt="Mini CNC Milling System" loading="lazy" />
+      <img src="images/library_management.jpg" alt="Library Management System" loading="lazy" />
+    </div>
+  </section>
+
+  <section id="contact" class="section" tabindex="0" aria-label="Contact Section">
+    <h2>Contact</h2>
+    <p>
+      📧 <a href="mailto:ashinirupasinghe99@gmail.com" style="color: #0077ff;">ashinirupasinghe99@gmail.com</a><br />
+      📞 <a href="tel:0766841994" style="color: #0077ff;">0766841994</a><br />
+      🔗 <a href="#" style="color: #0077ff;">LinkedIn</a> | 🧠 <a href="#" style="color: #0077ff;">GitHub</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Ashini Sithmini
+  </footer>
+
+  <!-- SOCIAL SIDE BAR -->
+  <div class="social-sidebar" aria-label="Social Media Links">
+    <a href="#" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+      <!-- LinkedIn SVG icon -->
+      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8.8 17.2V10.4H6.2V17.2H8.8M7.5 9.4A1.4 1.4 0 1 0 7.5 6.6A1.4 1.4 0 0 0 7.5 9.4M17.8 17.2V13.4C17.8 11.5 16.5 10.7 15.4 10.7C14.7 10.7 14 11.3 13.8 11.8H13.7V10.4H11.1V17.2H13.7V13.7C13.7 12.9 14.1 12.5 14.6 12.5C15.2 12.5 15.6 13 15.6 13.7V17.2H17.8Z"></path>
+      </svg>
+    </a>
+    <a href="#" target="_blank" aria-label="GitHub" title="GitHub">
+      <!-- GitHub SVG icon -->
+      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12,2A10,10 0 0,0 2,12C2,16.41 5.07,20.18 9.16,21.5C9.66,21.56 9.82,21.27 9.82,21.02C9.82,20.8 9.81,20.19 9.8,19.42C6.73,20.09 6.14,17.79 6.14,17.79C5.68,16.66 5.03,16.4 5.03,16.4C4.12,15.81 5.1,15.82 5.1,15.82C6.11,15.9 6.63,16.87 6.63,16.87C7.51,18.4 9.02,17.94 9.56,17.68C9.62,17.05 9.85,16.64 10.1,16.39C7.78,16.14 5.34,15.18 5.34,10.88C5.34,9.65 5.79,8.67 6.53,7.92C6.43,7.67 6.03,6.56 6.63,5.02C6.63,5.02 7.57,4.74 9.82,6.3C10.7,6.09 11.64,6 12.58,6C13.52,6 14.46,6.09 15.34,6.3C17.58,4.74 18.52,5.02 18.52,5.02C19.12,6.56 18.72,7.67 18.62,7.92C19.36,8.67 19.81,9.65 19.81,10.88C19.81,15.19 17.36,16.14 15.04,16.39C15.4,16.7 15.72,17.33 15.72,18.32C15.72,19.7 15.7,20.74 15.7,21.02C15.7,21.27 15.86,21.57 16.37,21.5C20.43,20.18 23.5,16.41 23.5,12A10,10 0 0,0 12,2Z"></path>
+      </svg>
+    </a>
+    <a href="mailto:ashinirupasinghe99@gmail.com" aria-label="Email" title="Email">
+      <!-- Email SVG icon -->
+      <svg fill="currentColor" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M20,4A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20M20,8L12,13L4,8V6L12,11L20,6V8Z"></path>
+      </svg>
+    </a>
   </div>
 
+  <footer>
+    &copy; 2025 Ashini Sithmini
+  </footer>
+
   <script>
-    // Animate container fade in on load
-    window.onload = () => {
-      document.querySelector('.container').style.opacity = 1;
+    // Scroll reveal animation for sections
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav ul li a.nav-link');
+
+    function revealOnScroll() {
+      let scrollY = window.pageYOffset;
+      sections.forEach(section => {
+        if (scrollY + window.innerHeight > section.offsetTop + 100) {
+          section.classList.add('visible');
+        }
+      });
+
+      // Highlight nav links
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === section.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
     }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Dark Mode Toggle
+    const toggleBtn = document.getElementById('darkModeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')){
+        toggleBtn.textContent = 'Light Mode';
+      } else {
+        toggleBtn.textContent = 'Dark Mode';
+      }
+    });
   </script>
 </body>
 </html>
